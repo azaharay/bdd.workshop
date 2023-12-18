@@ -1,0 +1,31 @@
+# This workflow will build a .NET project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
+
+name: Prueba Actions .NET
+
+on:
+  push:
+    branches: [ "GitHubActions" ]
+  pull_request:
+    branches: [ "GitHubActions" ]
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 8.0.x
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet build --no-restore
+    - name: Test UT Xunit
+      run: dotnet test bdd.workshop.calculator.tests.xunit --no-build --verbosity normal
+    - name: Test BDD TDD
+      run: dotnet test bdd.workshop.calculator.tests.tdd --no-build --verbosity normal  
