@@ -82,6 +82,8 @@ namespace bdd.workshop.calculator.tests.xunit
         {
             Assert.True(isPrimeNumber == Operator.IsPrimeNumber(number) );
         }
+
+        // Añadir Test unitario para Raiz
         [Fact]
         [Trait("TestType", "UT")]
         public void CalcularRaizTheory()
